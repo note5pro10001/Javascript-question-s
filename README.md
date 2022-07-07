@@ -1222,37 +1222,6 @@ y = 44; // Throws an error
 
     **[⬆ Back to Top](#table-of-contents)**
 
-39. ### What are the options in a cookie
-
-    There are few below options available for a cookie,
-
-    1. By default, the cookie is deleted when the browser is closed but you can change this behavior by setting expiry date (in UTC time).
-
-    ```javascript
-    document.cookie = "username=John; expires=Sat, 8 Jun 2019 12:00:00 UTC";
-    ```
-
-    1. By default, the cookie belongs to a current page. But you can tell the browser what path the cookie belongs to using a path parameter.
-
-    ```javascript
-    document.cookie = "username=John; path=/services";
-    ```
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-40. ### How do you delete a cookie
-
-    You can delete a cookie by setting the expiry date as a passed date. You don't need to specify a cookie value in this case.
-    For example, you can delete a username cookie in the current page as below.
-
-    ```javascript
-    document.cookie =
-      "username=; expires=Fri, 07 Jun 2019 00:00:00 UTC; path=/;";
-    ```
-
-    **Note:** You should define the cookie path option to ensure that you delete the right cookie. Some browsers doesn't allow to delete a cookie unless you specify a path parameter.
-
-    **[⬆ Back to Top](#table-of-contents)**
 
 41. ### What are the differences between cookie, local storage and session storage
 
