@@ -881,6 +881,47 @@ You can download the PDF and Epub version of this repository from the latest run
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+    
+    
+## Differences between declaring variables using var, let and const.
+
+![Screenshot](https://miro.medium.com/max/1400/1*yj0O5G2RRrYK_d9qkEqQQg.png)
+
+var variable1 = 23;
+
+let variable2 = 89;
+
+function catchValues(){
+  console.log(variable1);
+  console.log(variable2);
+
+// Both the variables can be accessed anywhere since they are declared in the global scope
+}
+
+window.variable1; // Returns the value 23
+
+window.variable2; // Returns undefined
+
+--> The variables declared with the let keyword in the global scope behave just like the variable declared with the var keyword in the global scope.
+--> Variables declared in the global scope with var and let keywords can be accessed from anywhere in the code.
+--> But, there is one difference! Variables that are declared with the var keyword in the global scope are added to the window/global object. Therefore, they can be accessed using window.variableName.
+Whereas, the variables declared with the let keyword are not added to the global object, therefore, trying to access such variables using window.variableName results in an error.
+
+## const Keyword
+--> Variables with the const keyword behave exactly like a variable declared with the let keyword with only one difference, any variable declared with the const keyword cannot be reassigned.
+
+const x = {name:"Vivek"};
+
+x = {address: "India"}; // Throws an error
+
+x.name = "Nikhil"; // No error is thrown
+
+const y = 23;
+
+y = 44; // Throws an error
+
+ **[⬆ Back to Top](#table-of-contents)**
+
 
 18. ### What is the difference between let and var
 
@@ -990,20 +1031,6 @@ You can download the PDF and Epub version of this repository from the latest run
 
     **[⬆ Back to Top](#table-of-contents)**
 
-23. ### How do you decode or encode a URL in JavaScript?
-
-    `encodeURI()` function is used to encode an URL. This function requires a URL string as a parameter and return that encoded string.
-    `decodeURI()` function is used to decode an URL. This function requires an encoded URL string as parameter and return that decoded string.
-
-    **Note:** If you want to encode characters such as `/ ? : @ & = + $ #` then you need to use `encodeURIComponent()`.
-
-    ```javascript
-    let uri = "employeeDetails?name=john&occupation=manager";
-    let encoded_uri = encodeURI(uri);
-    let decoded_uri = decodeURI(encoded_uri);
-    ```
-
-    **[⬆ Back to Top](#table-of-contents)**
 
 24. ### What is memoization
 
@@ -1155,18 +1182,6 @@ You can download the PDF and Epub version of this repository from the latest run
 32. ### How do you manipulate DOM using a service worker
 
     Service worker can't access the DOM directly. But it can communicate with the pages it controls by responding to messages sent via the `postMessage` interface, and those pages can manipulate the DOM.
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-33. ### How do you reuse information across service worker restarts
-
-    The problem with service worker is that it gets terminated when not in use, and restarted when it's next needed, so you cannot rely on global state within a service worker's `onfetch` and `onmessage` handlers. In this case, service workers will have access to IndexedDB API in order to persist and reuse across restarts.
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-34. ### What is IndexedDB
-
-    IndexedDB is a low-level API for client-side storage of larger amounts of structured data, including files/blobs. This API uses indexes to enable high-performance searches of this data.
 
     **[⬆ Back to Top](#table-of-contents)**
 
