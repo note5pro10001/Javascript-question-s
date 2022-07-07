@@ -1274,33 +1274,6 @@ y = 44; // Throws an error
 
     **[⬆ Back to Top](#table-of-contents)**
 
-45. ### What is a storage event and its event handler
-
-    The StorageEvent is an event that fires when a storage area has been changed in the context of another document. Whereas onstorage property is an EventHandler for processing storage events.
-    The syntax would be as below
-
-    ```javascript
-    window.onstorage = functionRef;
-    ```
-
-    Let's take the example usage of onstorage event handler which logs the storage key and it's values
-
-    ```javascript
-    window.onstorage = function (e) {
-      console.log(
-        "The " +
-          e.key +
-          " key has been changed from " +
-          e.oldValue +
-          " to " +
-          e.newValue +
-          "."
-      );
-    };
-    ```
-
-    **[⬆ Back to Top](#table-of-contents)**
-
 46. ### Why do you need web storage
 
     Web storage is more secure, and large amounts of data can be stored locally, without affecting website performance. Also, the information is never transferred to the server. Hence this is a more recommended approach than Cookies.
@@ -1318,81 +1291,6 @@ y = 44; // Throws an error
       // Sorry! No Web Storage support..
     }
     ```
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-48. ### How do you check web workers browser support
-
-    You need to check browser support for web workers before using it
-
-    ```javascript
-    if (typeof Worker !== "undefined") {
-      // code for Web worker support.
-    } else {
-      // Sorry! No Web Worker support..
-    }
-    ```
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-49. ### Give an example of a web worker
-
-    You need to follow below steps to start using web workers for counting example
-
-    1. Create a Web Worker File: You need to write a script to increment the count value. Let's name it as counter.js
-
-    ```javascript
-    let i = 0;
-
-    function timedCount() {
-      i = i + 1;
-      postMessage(i);
-      setTimeout("timedCount()", 500);
-    }
-
-    timedCount();
-    ```
-
-    Here postMessage() method is used to post a message back to the HTML page
-
-    1. Create a Web Worker Object: You can create a web worker object by checking for browser support. Let's name this file as web_worker_example.js
-
-    ```javascript
-    if (typeof w == "undefined") {
-      w = new Worker("counter.js");
-    }
-    ```
-
-    and we can receive messages from web worker
-
-    ```javascript
-    w.onmessage = function (event) {
-      document.getElementById("message").innerHTML = event.data;
-    };
-    ```
-
-    1. Terminate a Web Worker:
-       Web workers will continue to listen for messages (even after the external script is finished) until it is terminated. You can use the terminate() method to terminate listening to the messages.
-
-    ```javascript
-    w.terminate();
-    ```
-
-    1. Reuse the Web Worker: If you set the worker variable to undefined you can reuse the code
-
-    ```javascript
-    w = undefined;
-    ```
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-50. ### What are the restrictions of web workers on DOM
-
-    WebWorkers don't have access to below javascript objects since they are defined in an external files
-
-    1. Window object
-    2. Document object
-    3. Parent object
 
     **[⬆ Back to Top](#table-of-contents)**
 
@@ -1492,70 +1390,6 @@ y = 44; // Throws an error
 
     **[⬆ Back to Top](#table-of-contents)**
 
-56. ### What is a callback hell
-
-    Callback Hell is an anti-pattern with multiple nested callbacks which makes code hard to read and debug when dealing with asynchronous logic. The callback hell looks like below,
-
-    ```javascript
-    async1(function(){
-        async2(function(){
-            async3(function(){
-                async4(function(){
-                    ....
-                });
-            });
-        });
-    });
-    ```
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-57. ### What are server-sent events
-
-    Server-sent events (SSE) is a server push technology enabling a browser to receive automatic updates from a server via HTTP connection without resorting to polling. These are a one way communications channel - events flow from server to client only. This has been used in Facebook/Twitter updates, stock price updates, news feeds etc.
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-58. ### How do you receive server-sent event notifications
-
-    The EventSource object is used to receive server-sent event notifications. For example, you can receive messages from server as below,
-
-    ```javascript
-    if (typeof EventSource !== "undefined") {
-      var source = new EventSource("sse_generator.js");
-      source.onmessage = function (event) {
-        document.getElementById("output").innerHTML += event.data + "<br>";
-      };
-    }
-    ```
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-59. ### How do you check browser support for server-sent events
-
-    You can perform browser support for server-sent events before using it as below,
-
-    ```javascript
-    if (typeof EventSource !== "undefined") {
-      // Server-sent events supported. Let's have some code here!
-    } else {
-      // No server-sent events supported
-    }
-    ```
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-60. ### What are the events available for server sent events
-
-    Below are the list of events available for server sent events
-    | Event | Description |
-    |---- | ---------
-    | onopen | It is used when a connection to the server is opened |
-    | onmessage | This event is used when a message is received |
-    | onerror | It happens when an error occurs|
-
-    **[⬆ Back to Top](#table-of-contents)**
-
 61. ### What are the main rules of promise
 
     A promise must follow a specific set of rules,
@@ -1564,89 +1398,6 @@ y = 44; // Throws an error
     2. A pending promise may transition into either fulfilled or rejected state
     3. A fulfilled or rejected promise is settled and it must not transition into any other state.
     4. Once a promise is settled, the value must not change.
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-62. ### What is callback in callback
-
-    You can nest one callback inside in another callback to execute the actions sequentially one by one. This is known as callbacks in callbacks.
-
-    ```javascript
-    loadScript("/script1.js", function (script) {
-      console.log("first script is loaded");
-
-      loadScript("/script2.js", function (script) {
-        console.log("second script is loaded");
-
-        loadScript("/script3.js", function (script) {
-          console.log("third script is loaded");
-          // after all scripts are loaded
-        });
-      });
-    });
-    ```
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-63. ### What is promise chaining
-
-    The process of executing a sequence of asynchronous tasks one after another using promises is known as Promise chaining. Let's take an example of promise chaining for calculating the final result,
-
-    ```javascript
-    new Promise(function (resolve, reject) {
-      setTimeout(() => resolve(1), 1000);
-    })
-      .then(function (result) {
-        console.log(result); // 1
-        return result * 2;
-      })
-      .then(function (result) {
-        console.log(result); // 2
-        return result * 3;
-      })
-      .then(function (result) {
-        console.log(result); // 6
-        return result * 4;
-      });
-    ```
-
-    In the above handlers, the result is passed to the chain of .then() handlers with the below work flow,
-
-    1. The initial promise resolves in 1 second,
-    2. After that `.then` handler is called by logging the result(1) and then return a promise with the value of result \* 2.
-    3. After that the value passed to the next `.then` handler by logging the result(2) and return a promise with result \* 3.
-    4. Finally the value passed to the last `.then` handler by logging the result(6) and return a promise with result \* 4.
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-64. ### What is promise.all
-
-    Promise.all is a promise that takes an array of promises as an input (an iterable), and it gets resolved when all the promises get resolved or any one of them gets rejected. For example, the syntax of promise.all method is below,
-
-    ```javascript
-    Promise.all([Promise1, Promise2, Promise3]) .then(result) => {   console.log(result) }) .catch(error => console.log(`Error in promises ${error}`))
-    ```
-
-    **Note:** Remember that the order of the promises(output the result) is maintained as per input order.
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-65. ### What is the purpose of the race method in promise
-
-    Promise.race() method will return the promise instance which is firstly resolved or rejected. Let's take an example of race() method where promise2 is resolved first
-
-    ```javascript
-    var promise1 = new Promise(function (resolve, reject) {
-      setTimeout(resolve, 500, "one");
-    });
-    var promise2 = new Promise(function (resolve, reject) {
-      setTimeout(resolve, 100, "two");
-    });
-
-    Promise.race([promise1, promise2]).then(function (value) {
-      console.log(value); // "two" // Both promises will resolve, but promise2 is faster
-    });
-    ```
 
     **[⬆ Back to Top](#table-of-contents)**
 
@@ -1659,30 +1410,6 @@ y = 44; // Throws an error
 67. ### Why do you need strict mode
 
     Strict mode is useful to write "secure" JavaScript by notifying "bad syntax" into real errors. For example, it eliminates accidentally creating a global variable by throwing an error and also throws an error for assignment to a non-writable property, a getter-only property, a non-existing property, a non-existing variable, or a non-existing object.
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-68. ### How do you declare strict mode
-
-    The strict mode is declared by adding "use strict"; to the beginning of a script or a function.
-    If declared at the beginning of a script, it has global scope.
-
-    ```javascript
-    "use strict";
-    x = 3.14; // This will cause an error because x is not declared
-    ```
-
-    and if you declare inside a function, it has local scope
-
-    ```javascript
-    x = 3.14; // This will not cause an error.
-    myFunction();
-
-    function myFunction() {
-      "use strict";
-      y = 3.14; // This will cause an error
-    }
-    ```
 
     **[⬆ Back to Top](#table-of-contents)**
 
@@ -1796,49 +1523,6 @@ y = 44; // Throws an error
 
     **[⬆ Back to Top](#table-of-contents)**
 
-77. ### How do you access history in javascript
-
-    The window.history object contains the browser's history. You can load previous and next URLs in the history using back() and next() methods.
-
-    ```javascript
-    function goBack() {
-      window.history.back();
-    }
-    function goForward() {
-      window.history.forward();
-    }
-    ```
-
-    **Note:** You can also access history without window prefix.
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-78. ### How do you detect caps lock key turned on or not
-
-    The `mouseEvent getModifierState()` is used to return a boolean value that indicates whether the specified modifier key is activated or not. The modifiers such as CapsLock, ScrollLock and NumLock are activated when they are clicked, and deactivated when they are clicked again.
-
-    Let's take an input element to detect the CapsLock on/off behavior with an example,
-
-    ```html
-    <input type="password" onmousedown="enterInput(event)" />
-
-    <p id="feedback"></p>
-
-    <script>
-      function enterInput(e) {
-        var flag = e.getModifierState("CapsLock");
-        if (flag) {
-          document.getElementById("feedback").innerHTML = "CapsLock activated";
-        } else {
-          document.getElementById("feedback").innerHTML =
-            "CapsLock not activated";
-        }
-      }
-    </script>
-    ```
-
-    **[⬆ Back to Top](#table-of-contents)**
-
 79. ### What is isNaN
 
     The isNaN() function is used to determine whether a value is an illegal number (Not-a-Number) or not. i.e, This function returns true if the value equates to NaN. Otherwise it returns false.
@@ -1888,30 +1572,6 @@ y = 44; // Throws an error
 
     **[⬆ Back to Top](#table-of-contents)**
 
-84. ### What is the purpose of isFinite function
-
-    The isFinite() function is used to determine whether a number is a finite, legal number. It returns false if the value is +infinity, -infinity, or NaN (Not-a-Number), otherwise it returns true.
-
-    ```javascript
-    isFinite(Infinity); // false
-    isFinite(NaN); // false
-    isFinite(-Infinity); // false
-
-    isFinite(100); // true
-    ```
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-85. ### What is an event flow
-
-    Event flow is the order in which event is received on the web page. When you click an element that is nested in various other elements, before your click actually reaches its destination, or target element, it must trigger the click event for each of its parent elements first, starting at the top with the global window object.
-    There are two ways of event flow
-
-    1. Top to Bottom(Event Capturing)
-    2. Bottom to Top (Event Bubbling)
-
-    **[⬆ Back to Top](#table-of-contents)**
-
 86. ### What is event bubbling
 
     Event bubbling is a type of event propagation where the event first triggers on the innermost target element, and then successively triggers on the ancestors (parents) of the target element in the same nesting hierarchy till it reaches the outermost DOM element.
@@ -1936,30 +1596,6 @@ y = 44; // Throws an error
 
     **[⬆ Back to Top](#table-of-contents)**
 
-89. ### How do you find operating system details
-
-    The window.navigator object contains information about the visitor's browser OS details. Some of the OS properties are available under platform property,
-
-    ```javascript
-    console.log(navigator.platform);
-    ```
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-90. ### What is the difference between document load and DOMContentLoaded events
-
-    The `DOMContentLoaded` event is fired when the initial HTML document has been completely loaded and parsed, without waiting for assets(stylesheets, images, and subframes) to finish loading. Whereas The load event is fired when the whole page has loaded, including all dependent resources(stylesheets, images).
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-91. ### What is the difference between native, host and user objects
-
-    `Native objects` are objects that are part of the JavaScript language defined by the ECMAScript specification. For example, String, Math, RegExp, Object, Function etc core objects defined in the ECMAScript spec.
-    `Host objects` are objects provided by the browser or runtime environment (Node). For example, window, XmlHttpRequest, DOM nodes etc are considered as host objects.
-    `User objects` are objects defined in the javascript code. For example, User objects created for profile information.
-
-    **[⬆ Back to Top](#table-of-contents)**
-
 92. ### What are the tools or techniques used for debugging JavaScript code
 
     You can use below tools or techniques for debugging javascript
@@ -1967,24 +1603,6 @@ y = 44; // Throws an error
     1. Chrome Devtools
     2. debugger statement
     3. Good old console.log statement
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-93. ### What are the pros and cons of promises over callbacks
-
-    Below are the list of pros and cons of promises over callbacks,
-
-    **Pros:**
-
-    1. It avoids callback hell which is unreadable
-    2. Easy to write sequential asynchronous code with .then()
-    3. Easy to write parallel asynchronous code with Promise.all()
-    4. Solves some of the common problems of callbacks(call the callback too late, too early, many times and swallow errors/exceptions)
-
-    **Cons:**
-
-    1. It makes little complex code
-    2. You need to load a polyfill if ES6 is not supported
 
     **[⬆ Back to Top](#table-of-contents)**
 
@@ -2010,12 +1628,6 @@ y = 44; // Throws an error
     console.log(input.getAttribute("value")); // Good evening
     console.log(input.value); // Good evening
     ```
-
-    **[⬆ Back to Top](#table-of-contents)**
-
-95. ### What is same-origin policy
-
-    The same-origin policy is a policy that prevents JavaScript from making requests across domain boundaries. An origin is defined as a combination of URI scheme, hostname, and port number. If you enable this policy then it prevents a malicious script on one page from obtaining access to sensitive data on another web page using Document Object Model(DOM).
 
     **[⬆ Back to Top](#table-of-contents)**
 
@@ -2100,40 +1712,6 @@ y = 44; // Throws an error
 
      **[⬆ Back to Top](#table-of-contents)**
 
-103. ### What is the use of stopPropagation method
-
-     The stopPropagation method is used to stop the event from bubbling up the event chain. For example, the below nested divs with stopPropagation method prevents default event propagation when clicking on nested div(Div1)
-
-     ```javascript
-     <p>Click DIV1 Element</p>
-     <div onclick="secondFunc()">DIV 2
-       <div onclick="firstFunc(event)">DIV 1</div>
-     </div>
-
-     <script>
-     function firstFunc(event) {
-       alert("DIV 1");
-       event.stopPropagation();
-     }
-
-     function secondFunc() {
-       alert("DIV 2");
-     }
-     </script>
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-104. ### What are the steps involved in return false usage
-
-     The return false statement in event handlers performs the below steps,
-
-     1. First it stops the browser's default action or behaviour.
-     2. It prevents the event from propagating the DOM
-     3. Stops callback execution and returns immediately when called.
-
-     **[⬆ Back to Top](#table-of-contents)**
-
 105. ### What is BOM
 
      The Browser Object Model (BOM) allows JavaScript to "talk to" the browser. It consists of the objects navigator, history, screen, location and document which are children of the window. The Browser Object Model is not standardized and can change based on different browsers.
@@ -2169,28 +1747,6 @@ y = 44; // Throws an error
 108. ### Why is JavaScript treated as Single threaded
 
      JavaScript is a single-threaded language. Because the language specification does not allow the programmer to write code so that the interpreter can run parts of it in parallel in multiple threads or processes. Whereas languages like java, go, C++ can make multi-threaded and multi-process programs.
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-109. ### What is an event delegation
-
-     Event delegation is a technique for listening to events where you delegate a parent element as the listener for all of the events that happen inside it.
-
-     For example, if you wanted to detect field changes in inside a specific form, you can use event delegation technique,
-
-     ```javascript
-     var form = document.querySelector("#registration-form");
-
-     // Listen for changes to fields inside the form
-     form.addEventListener(
-       "input",
-       function (event) {
-         // Log the field that was changed
-         console.log(event.target);
-       },
-       false
-     );
-     ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -2345,32 +1901,6 @@ y = 44; // Throws an error
 
      **[⬆ Back to Top](#table-of-contents)**
 
-121. ### How do you validate an email in javascript
-
-     You can validate an email in javascript using regular expressions. It is recommended to do validations on the server side instead of the client side. Because the javascript can be disabled on the client side.
-
-     ```javascript
-     function validateEmail(email) {
-       var re =
-         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-       return re.test(String(email).toLowerCase());
-     }
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-     The above regular expression accepts unicode characters.
-
-122. ### How do you get the current url with javascript
-
-     You can use `window.location.href` expression to get the current url path and you can use the same expression for updating the URL too. You can also use `document.URL` for read-only purposes but this solution has issues in FF.
-
-     ```javascript
-     console.log("location.href", window.location.href); // Returns full URL
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
 123. ### What are the various url properties of location object
 
      The below `Location` object properties can be used to access URL components of the page,
@@ -2383,17 +1913,6 @@ y = 44; // Throws an error
      6. pathname - The path name of the URL
      7. search - The query portion of the URL
      8. hash - The anchor portion of the URL
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-124. ### How do get query string values in javascript
-
-     You can use URLSearchParams to get query string values in javascript. Let's see an example to get the client code value from URL query string,
-
-     ```javascript
-     const urlParams = new URLSearchParams(window.location.search);
-     const clientCode = urlParams.get("clientCode");
-     ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -2452,38 +1971,6 @@ y = 44; // Throws an error
 
      **[⬆ Back to Top](#table-of-contents)**
 
-127. ### How do you test for an empty object
-
-     There are different solutions based on ECMAScript versions
-
-     1. **Using Object entries(ECMA 7+):** You can use object entries length along with constructor type.
-
-     ```javascript
-     Object.entries(obj).length === 0 && obj.constructor === Object; // Since date object length is 0, you need to check constructor check as well
-     ```
-
-     1. **Using Object keys(ECMA 5+):** You can use object keys length along with constructor type.
-
-     ```javascript
-     Object.keys(obj).length === 0 && obj.constructor === Object; // Since date object length is 0, you need to check constructor check as well
-     ```
-
-     1. **Using for-in with hasOwnProperty(Pre-ECMA 5):** You can use a for-in loop along with hasOwnProperty.
-
-     ```javascript
-     function isEmpty(obj) {
-       for (var prop in obj) {
-         if (obj.hasOwnProperty(prop)) {
-           return false;
-         }
-       }
-
-       return JSON.stringify(obj) === JSON.stringify({});
-     }
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
 128. ### What is an arguments object
 
      The arguments object is an Array-like object accessible inside functions that contains the values of the arguments passed to that function. For example, let's see how to use arguments object inside sum function,
@@ -2520,23 +2007,6 @@ y = 44; // Throws an error
 
      **[⬆ Back to Top](#table-of-contents)**
 
-130. ### What are the pros and cons of for loop
-
-     The for-loop is a commonly used iteration syntax in javascript. It has both pros and cons
-
-     #### Pros
-
-     1. Works on every environment
-     2. You can use break and continue flow control statements
-
-     #### Cons
-
-     1. Too verbose
-     2. Imperative
-     3. You might face one-by-off errors
-
-     **[⬆ Back to Top](#table-of-contents)**
-
 131. ### How do you display the current date in javascript
 
      You can use `new Date()` to generate a new Date object containing the current date and time. For example, let's display the current date in mm/dd/yyyy
@@ -2549,54 +2019,6 @@ y = 44; // Throws an error
 
      today = mm + "/" + dd + "/" + yyyy;
      document.write(today);
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-132. ### How do you compare two date objects
-
-     You need to use date.getTime() method to compare date values instead of comparison operators (==, !=, ===, and !== operators)
-
-     ```javascript
-     var d1 = new Date();
-     var d2 = new Date(d1);
-     console.log(d1.getTime() === d2.getTime()); //True
-     console.log(d1 === d2); // False
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-133. ### How do you check if a string starts with another string
-
-     You can use ECMAScript 6's `String.prototype.startsWith()` method to check if a string starts with another string or not. But it is not yet supported in all browsers. Let's see an example to see this usage,
-
-     ```javascript
-     "Good morning".startsWith("Good"); // true
-     "Good morning".startsWith("morning"); // false
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-134. ### How do you trim a string in javascript
-
-     JavaScript provided a trim method on string types to trim any whitespaces present at the beginning or ending of the string.
-
-     ```javascript
-     "  Hello World   ".trim(); //Hello World
-     ```
-
-     If your browser(<IE9) doesn't support this method then you can use below polyfill.
-
-     ```javascript
-     if (!String.prototype.trim) {
-       (function () {
-         // Make sure we trim BOM and NBSP
-         var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
-         String.prototype.trim = function () {
-           return this.replace(rtrim, "");
-         };
-       })();
-     }
      ```
 
      **[⬆ Back to Top](#table-of-contents)**
@@ -2649,64 +2071,6 @@ y = 44; // Throws an error
 
      **[⬆ Back to Top](#table-of-contents)**
 
-138. ### How do you define multiline strings
-
-     You can define multiline string literals using the '\\' character followed by line terminator.
-
-     ```javascript
-     var str =
-       "This is a \
-     very lengthy \
-     sentence!";
-     ```
-
-     But if you have a space after the '\\' character, the code will look exactly the same, but it will raise a SyntaxError.
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-139. ### What is an app shell model
-
-     An application shell (or app shell) architecture is one way to build a Progressive Web App that reliably and instantly loads on your users' screens, similar to what you see in native applications. It is useful for getting some initial HTML to the screen fast without a network.
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-140. ### Can we define properties for functions
-
-     Yes, We can define properties for functions because functions are also objects.
-
-     ```javascript
-     fn = function (x) {
-       //Function code goes here
-     };
-
-     fn.name = "John";
-
-     fn.profile = function (y) {
-       //Profile code goes here
-     };
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-141. ### What is the way to find the number of parameters expected by a function
-
-     You can use `function.length` syntax to find the number of parameters expected by a function. Let's take an example of `sum` function to calculate the sum of numbers,
-
-     ```javascript
-     function sum(num1, num2, num3, num4) {
-       return num1 + num2 + num3 + num4;
-     }
-     sum.length; // 4 is the number of parameters expected.
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-142. ### What is a polyfill
-
-     A polyfill is a piece of JS code used to provide modern functionality on older browsers that do not natively support it. For example, Silverlight plugin polyfill can be used to mimic the functionality of an HTML Canvas element on Microsoft Internet Explorer 7.
-
-     **[⬆ Back to Top](#table-of-contents)**
-
 143. ### What are break and continue statements
 
      The break statement is used to "jump out" of a loop. i.e, It breaks the loop and continues executing the code after the loop.
@@ -2730,51 +2094,6 @@ y = 44; // Throws an error
        text += "Number: " + i + "<br>";
      }
      ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-144. ### What are js labels
-
-     The label statement allows us to name loops and blocks in JavaScript. We can then use these labels to refer back to the code later. For example, the below code with labels avoids printing the numbers when they are same,
-
-     ```javascript
-     var i, j;
-
-     loop1: for (i = 0; i < 3; i++) {
-       loop2: for (j = 0; j < 3; j++) {
-         if (i === j) {
-           continue loop1;
-         }
-         console.log("i = " + i + ", j = " + j);
-       }
-     }
-
-     // Output is:
-     //   "i = 1, j = 0"
-     //   "i = 2, j = 0"
-     //   "i = 2, j = 1"
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-145. ### What are the benefits of keeping declarations at the top
-
-     It is recommended to keep all declarations at the top of each script or function. The benefits of doing this are,
-
-     1. Gives cleaner code
-     2. It provides a single place to look for local variables
-     3. Easy to avoid unwanted global variables
-     4. It reduces the possibility of unwanted re-declarations
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-146. ### What are the benefits of initializing variables
-
-     It is recommended to initialize variables because of the below benefits,
-
-     1. It gives cleaner code
-     2. It provides a single place to initialize variables
-     3. Avoid undefined values in the code
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -2857,28 +2176,6 @@ y = 44; // Throws an error
 
      **[⬆ Back to Top](#table-of-contents)**
 
-153. ### Is it recommended to use eval
-
-     No, it allows arbitrary code to be run which causes a security problem. As we know that the eval() function is used to run text as code. In most of the cases, it should not be necessary to use it.
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-154. ### What is a Regular Expression
-
-     A regular expression is a sequence of characters that forms a search pattern. You can use this search pattern for searching data in a text. These can be used to perform all types of text search and text replace operations. Let's see the syntax format now,
-
-     ```javascript
-     /pattern/modifiers;
-     ```
-
-     For example, the regular expression or search pattern with case-insensitive username would be,
-
-     ```javascript
-     /John/i;
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
 155. ### What are the string methods available in Regular expression
 
      Regular Expressions has two string methods: search() and replace().
@@ -2898,48 +2195,6 @@ y = 44; // Throws an error
 
      **[⬆ Back to Top](#table-of-contents)**
 
-156. ### What are modifiers in regular expression
-
-     Modifiers can be used to perform case-insensitive and global searches. Let's list down some of the modifiers,
-
-     | Modifier | Description                                             |
-     | -------- | ------------------------------------------------------- |
-     | i        | Perform case-insensitive matching                       |
-     | g        | Perform a global match rather than stops at first match |
-     | m        | Perform multiline matching                              |
-
-     Let's take an example of global modifier,
-
-     ```javascript
-     var text = "Learn JS one by one";
-     var pattern = /one/g;
-     var result = text.match(pattern); // one,one
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-157. ### What are regular expression patterns
-
-     Regular Expressions provide a group of patterns in order to match characters. Basically they are categorized into 3 types,
-
-     1. **Brackets:** These are used to find a range of characters.
-        For example, below are some use cases,
-        1. [abc]: Used to find any of the characters between the brackets(a,b,c)
-        2. [0-9]: Used to find any of the digits between the brackets
-        3. (a|b): Used to find any of the alternatives separated with |
-     2. **Metacharacters:** These are characters with a special meaning
-        For example, below are some use cases,
-        1. \\d: Used to find a digit
-        2. \\s: Used to find a whitespace character
-        3. \\b: Used to find a match at the beginning or ending of a word
-     3. **Quantifiers:** These are useful to define quantities
-        For example, below are some use cases,
-        1. n+: Used to find matches for any string that contains at least one n
-        2. n\*: Used to find matches for any string that contains zero or more occurrences of n
-        3. n?: Used to find matches for any string that contains zero or one occurrences of n
-
-     **[⬆ Back to Top](#table-of-contents)**
-
 158. ### What is a RegExp object
 
      RegExp object is a regular expression object with predefined properties and methods. Let's see the simple usage of RegExp object,
@@ -2948,28 +2203,6 @@ y = 44; // Throws an error
      var regexp = new RegExp("\\w+");
      console.log(regexp);
      // expected output: /\w+/
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-159. ### How do you search a string for a pattern
-
-     You can use the test() method of regular expression in order to search a string for a pattern, and return true or false depending on the result.
-
-     ```javascript
-     var pattern = /you/;
-     console.log(pattern.test("How are you?")); //true
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-160. ### What is the purpose of exec method
-
-     The purpose of exec method is similar to test method but it executes a search for a match in a specified string and returns a result array, or null instead of returning true/false.
-
-     ```javascript
-     var pattern = /you/;
-     console.log(pattern.exec("How are you?")); //["you", index: 8, input: "How are you?", groups: undefined]
      ```
 
      **[⬆ Back to Top](#table-of-contents)**
@@ -2998,22 +2231,6 @@ y = 44; // Throws an error
 
      **[⬆ Back to Top](#table-of-contents)**
 
-163. ### What is a debugger statement
-
-     The debugger statement invokes any available debugging functionality, such as setting a breakpoint. If no debugging functionality is available, this statement has no effect.
-     For example, in the below function a debugger statement has been inserted. So
-     execution is paused at the debugger statement just like a breakpoint in the script source.
-
-     ```javascript
-     function getProfile() {
-       // code goes here
-       debugger;
-       // code goes here
-     }
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
 164. ### What is the purpose of breakpoints in debugging
 
      You can set breakpoints in the javascript code once the debugger statement is executed and the debugger window pops up. At each breakpoint, javascript will stop executing, and let you examine the JavaScript values. After examining values, you can resume the execution of code using the play button.
@@ -3026,111 +2243,6 @@ y = 44; // Throws an error
 
      ```javascript
      var else = "hello"; // Uncaught SyntaxError: Unexpected token else
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-166. ### How do you detect a mobile browser
-
-     You can use regex which returns a true or false value depending on whether or not the user is browsing with a mobile.
-
-     ```javascript
-     window.mobilecheck = function () {
-       var mobileCheck = false;
-       (function (a) {
-         if (
-           /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(
-             a
-           ) ||
-           /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(
-             a.substr(0, 4)
-           )
-         )
-           mobileCheck = true;
-       })(navigator.userAgent || navigator.vendor || window.opera);
-       return mobileCheck;
-     };
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-167. ### How do you detect a mobile browser without regexp
-
-     You can detect mobile browsers by simply running through a list of devices and checking if the useragent matches anything. This is an alternative solution for RegExp usage,
-
-     ```javascript
-     function detectmob() {
-       if (
-         navigator.userAgent.match(/Android/i) ||
-         navigator.userAgent.match(/webOS/i) ||
-         navigator.userAgent.match(/iPhone/i) ||
-         navigator.userAgent.match(/iPad/i) ||
-         navigator.userAgent.match(/iPod/i) ||
-         navigator.userAgent.match(/BlackBerry/i) ||
-         navigator.userAgent.match(/Windows Phone/i)
-       ) {
-         return true;
-       } else {
-         return false;
-       }
-     }
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-168. ### How do you get the image width and height using JS
-
-     You can programmatically get the image and check the dimensions(width and height) using Javascript.
-
-     ```javascript
-     var img = new Image();
-     img.onload = function () {
-       console.log(this.width + "x" + this.height);
-     };
-     img.src = "http://www.google.com/intl/en_ALL/images/logo.gif";
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-169. ### How do you make synchronous HTTP request
-
-     Browsers provide an XMLHttpRequest object which can be used to make synchronous HTTP requests from JavaScript
-
-     ```javascript
-     function httpGet(theUrl) {
-       var xmlHttpReq = new XMLHttpRequest();
-       xmlHttpReq.open("GET", theUrl, false); // false for synchronous request
-       xmlHttpReq.send(null);
-       return xmlHttpReq.responseText;
-     }
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-170. ### How do you make asynchronous HTTP request
-
-     Browsers provide an XMLHttpRequest object which can be used to make asynchronous HTTP requests from JavaScript by passing the 3rd parameter as true.
-
-     ```javascript
-     function httpGetAsync(theUrl, callback) {
-       var xmlHttpReq = new XMLHttpRequest();
-       xmlHttpReq.onreadystatechange = function () {
-         if (xmlHttpReq.readyState == 4 && xmlHttpReq.status == 200)
-           callback(xmlHttpReq.responseText);
-       };
-       xmlHttp.open("GET", theUrl, true); // true for asynchronous
-       xmlHttp.send(null);
-     }
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-171. ### How do you convert date to another timezone in javascript
-
-     You can use the toLocaleString() method to convert dates in one timezone to another. For example, let's convert current date to British English timezone as below,
-
-     ```javascript
-     console.log(event.toLocaleString("en-GB", { timeZone: "UTC" })); //29/06/2019, 09:56:00
      ```
 
      **[⬆ Back to Top](#table-of-contents)**
@@ -3163,105 +2275,6 @@ y = 44; // Throws an error
        isAuthenticated ? "Hello, welcome" : "Sorry, you are not authenticated"
      ); //Sorry, you are not authenticated
      ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-174. ### Can you apply chaining on conditional operator
-
-     Yes, you can apply chaining on conditional operators similar to if … else if … else if … else chain. The syntax is going to be as below,
-
-     ```javascript
-     function traceValue(someParam) {
-       return condition1
-         ? value1
-         : condition2
-         ? value2
-         : condition3
-         ? value3
-         : value4;
-     }
-
-     // The above conditional operator is equivalent to:
-
-     function traceValue(someParam) {
-       if (condition1) {
-         return value1;
-       } else if (condition2) {
-         return value2;
-       } else if (condition3) {
-         return value3;
-       } else {
-         return value4;
-       }
-     }
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-175. ### What are the ways to execute javascript after page load
-
-     You can execute javascript after page load in many different ways,
-
-     1. **window.onload:**
-
-     ```javascript
-     window.onload = function ...
-     ```
-
-     1. **document.onload:**
-
-     ```javascript
-     document.onload = function ...
-     ```
-
-     1. **body onload:**
-
-     ```javascript
-     <body onload="script();">
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-176. ### What is the difference between proto and prototype
-
-     The `__proto__` object is the actual object that is used in the lookup chain to resolve methods, etc. Whereas `prototype` is the object that is used to build `__proto__` when you create an object with new
-
-     ```javascript
-     new Employee().__proto__ === Employee.prototype;
-     new Employee().prototype === undefined;
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-177. ### Give an example where do you really need semicolon
-
-     It is recommended to use semicolons after every statement in JavaScript. For example, in the below case it throws an error ".. is not a function" at runtime due to missing semicolon.
-
-     ```javascript
-     // define a function
-     var fn = (function () {
-       //...
-     })(
-       // semicolon missing at this line
-
-       // then execute some code inside a closure
-       function () {
-         //...
-       }
-     )();
-     ```
-
-     and it will be interpreted as
-
-     ```javascript
-     var fn = (function () {
-       //...
-     })(function () {
-       //...
-     })();
-     ```
-
-     In this case, we are passing the second function as an argument to the first function and then trying to call the result of the first function call as a function. Hence, the second function will fail with a "... is not a function" error at runtime.
 
      **[⬆ Back to Top](#table-of-contents)**
 
