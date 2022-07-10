@@ -3364,38 +3364,6 @@ y = 44; // Throws an error
 
      **[⬆ Back to Top](#table-of-contents)**
 
-359. ### How do you create self string using special characters
-
-     The self string can be formed with the combination of `[]()!+` characters. You need to remember the below conventions to achieve this pattern.
-
-     1. Since Arrays are truthful values, negating the arrays will produce false: ![] === false
-     2. As per JavaScript coercion rules, the addition of arrays together will toString them: [] + [] === ""
-     3. Prepend an array with + operator will convert an array to false, the negation will make it true and finally converting the result will produce value '1': +(!(+[])) === 1
-
-     By applying the above rules, we can derive below conditions
-
-     ```javascript
-     (![] + [] === "false" + !+[]) === 1;
-     ```
-
-     Now the character pattern would be created as below,
-
-     ```javascript
-           s               e               l               f
-      ^^^^^^^^^^^^^   ^^^^^^^^^^^^^   ^^^^^^^^^^^^^   ^^^^^^^^^^^^^
-
-      (![] + [])[3] + (![] + [])[4] + (![] + [])[2] + (![] + [])[0]
-      ^^^^^^^^^^^^^   ^^^^^^^^^^^^^   ^^^^^^^^^^^^^   ^^^^^^^^^^^^^
-     (![] + [])[+!+[]+!+[]+!+[]] +
-     (![] + [])[+!+[]+!+[]+!+[]+!+[]] +
-     (![] + [])[+!+[]+!+[]] +
-     (![] + [])[+[]]
-     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-     (![]+[])[+!+[]+!+[]+!+[]]+(![]+[])[+!+[]+!+[]+!+[]+!+[]]+(![]+[])[+!+[]+!+[]]+(![]+[])[+[]]
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
 360. ### How do you remove falsy values from an array
 
      You can apply the filter method on the array by passing Boolean as a parameter. This way it removes all falsy values(0, undefined, null, false and "") from the array.
@@ -3514,38 +3482,6 @@ y = 44; // Throws an error
 
      **[⬆ Back to Top](#table-of-contents)**
 
-369. ### Is it possible to add CSS to console messages
-
-     Yes, you can apply CSS styles to console messages similar to html text on the web page.
-
-     ```javascript
-     console.log(
-       "%c The text has blue color, with large font and red background",
-       "color: blue; font-size: x-large; background: red"
-     );
-     ```
-
-     The text will be displayed as below,
-     ![Screenshot](images/console-css.png)
-
-     **Note:** All CSS styles can be applied to console messages.
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-370. ### What is the purpose of dir method of console object
-
-     The `console.dir()` is used to display an interactive list of the properties of the specified JavaScript object as JSON.
-
-     ```javascript
-     const user = { name: "John", id: 1, city: "Delhi" };
-     console.dir(user);
-     ```
-
-     The user object displayed in JSON representation
-     ![Screenshot](images/console-dir.png)
-
-     **[⬆ Back to Top](#table-of-contents)**
-
 371. ### Is it possible to debug HTML elements in console
 
      Yes, it is possible to get and debug HTML elements in the console just like inspecting elements.
@@ -3561,26 +3497,6 @@ y = 44; // Throws an error
 
      **[⬆ Back to Top](#table-of-contents)**
 
-372. ### How do you display data in a tabular format using console object
-
-     The `console.table()` is used to display data in the console in a tabular format to visualize complex arrays or objects.
-
-     ```js
-     const users = [
-       { name: "John", id: 1, city: "Delhi" },
-       { name: "Max", id: 2, city: "London" },
-       { name: "Rod", id: 3, city: "Paris" },
-     ];
-     console.table(users);
-     ```
-
-     The data visualized in a table format,
-
-     ![Screenshot](images/console-table.png)
-     **Not:** Remember that `console.table()` is not supported in IE.
-
-     **[⬆ Back to Top](#table-of-contents)**
-
 373. ### How do you verify that an argument is a Number or not
 
      The combination of IsNaN and isFinite methods are used to confirm whether an argument is a number or not.
@@ -3589,21 +3505,6 @@ y = 44; // Throws an error
      function isNumber(n) {
        return !isNaN(parseFloat(n)) && isFinite(n);
      }
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-374. ### How do you create copy to clipboard button
-
-     You need to select the content(using .select() method) of the input element and execute the copy command with execCommand (i.e, execCommand('copy')). You can also execute other system commands like cut and paste.
-
-     ```javascript
-     document.querySelector("#copy-button").onclick = function () {
-       // Select the content
-       document.querySelector("#copy-input").select();
-       // Copy to the clipboard
-       document.execCommand("copy");
-     };
      ```
 
      **[⬆ Back to Top](#table-of-contents)**
@@ -3640,64 +3541,6 @@ y = 44; // Throws an error
      const multiDimensionalArr = [11, [22, 33], [44, [55, 66, [77, [88]], 99]]];
      const flatArr = flattenMultiArray(multiDimensionalArr); // [11, 22, 33, 44, 55, 66, 77, 88, 99]
      ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-377. ### What is the easiest multi condition checking
-
-     You can use `indexOf` to compare input with multiple values instead of checking each value as one condition.
-
-     ```javascript
-     // Verbose approach
-     if (
-       input === "first" ||
-       input === 1 ||
-       input === "second" ||
-       input === 2
-     ) {
-       someFunction();
-     }
-     // Shortcut
-     if (["first", 1, "second", 2].indexOf(input) !== -1) {
-       someFunction();
-     }
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-378. ### How do you capture browser back button
-
-     The `window.onbeforeunload` method is used to capture browser back button events. This is helpful to warn users about losing the current data.
-
-     ```javascript
-     window.onbeforeunload = function () {
-       alert("You work will be lost");
-     };
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-379. ### How do you disable right click in the web page
-
-     The right click on the page can be disabled by returning false from the `oncontextmenu` attribute on the body element.
-
-     ```html
-     <body oncontextmenu="return false;"></body>
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-380. ### What are wrapper objects
-
-     Primitive Values like string,number and boolean don't have properties and methods but they are temporarily converted or coerced to an object(Wrapper object) when you try to perform actions on them. For example, if you apply toUpperCase() method on a primitive string value, it does not throw an error but returns uppercase of the string.
-
-     ```javascript
-     let name = "john";
-
-     console.log(name.toUpperCase()); // Behind the scenes treated as console.log(new String(name).toUpperCase());
-     ```
-
-     i.e, Every primitive except null and undefined have Wrapper Objects and the list of wrapper objects are String,Number,Boolean,Symbol and BigInt.
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -3758,43 +3601,6 @@ y = 44; // Throws an error
 
      **[⬆ Back to Top](#table-of-contents)**
 
-384. ### What is web speech API
-
-     Web speech API is used to enable modern browsers recognize and synthesize speech(i.e, voice data into web apps). This API has been introduced by W3C Community in the year 2012. It has two main parts,
-
-     1. **SpeechRecognition (Asynchronous Speech Recognition or Speech-to-Text):** It provides the ability to recognize voice context from an audio input and respond accordingly. This is accessed by the `SpeechRecognition` interface.
-        The below example shows on how to use this API to get text from speech,
-
-     ```javascript
-     window.SpeechRecognition =
-       window.webkitSpeechRecognition || window.SpeechRecognition; // webkitSpeechRecognition for Chrome and SpeechRecognition for FF
-     const recognition = new window.SpeechRecognition();
-     recognition.onresult = (event) => {
-       // SpeechRecognitionEvent type
-       const speechToText = event.results[0][0].transcript;
-       console.log(speechToText);
-     };
-     recognition.start();
-     ```
-
-     In this API, browser is going to ask you for permission to use your microphone
-
-     1. **SpeechSynthesis (Text-to-Speech):** It provides the ability to recognize voice context from an audio input and respond. This is accessed by the `SpeechSynthesis` interface.
-        For example, the below code is used to get voice/speech from text,
-
-     ```javascript
-     if ("speechSynthesis" in window) {
-       var speech = new SpeechSynthesisUtterance("Hello World!");
-       speech.lang = "en-US";
-       window.speechSynthesis.speak(speech);
-     }
-     ```
-
-     The above examples can be tested on chrome(33+) browser's developer console.
-     **Note:** This API is still a working draft and only available in Chrome and Firefox browsers(ofcourse Chrome only implemented the specification)
-
-     **[⬆ Back to Top](#table-of-contents)**
-
 385. ### What is minimum timeout throttling
 
      Both browser and NodeJS javascript environments throttles with a minimum delay that is greater than 0ms. That means even though setting a delay of 0ms will not happen instantaneously.
@@ -3843,93 +3649,12 @@ y = 44; // Throws an error
 
      **[⬆ Back to Top](#table-of-contents)**
 
-387. ### What are tasks in event loop
-
-     A task is any javascript code/program which is scheduled to be run by the standard mechanisms such as initially starting to run a program, run an event callback, or an interval or timeout being fired. All these tasks are scheduled on a task queue.
-     Below are the list of use cases to add tasks to the task queue,
-
-     1. When a new javascript program is executed directly from console or running by the `<script>` element, the task will be added to the task queue.
-     2. When an event fires, the event callback added to task queue
-     3. When a setTimeout or setInterval is reached, the corresponding callback added to task queue
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-388. ### What is microtask
-
-     Microtask is the javascript code which needs to be executed immediately after the currently executing task/microtask is completed. They are kind of blocking in nature. i.e, The main thread will be blocked until the microtask queue is empty.
-     The main sources of microtasks are Promise.resolve, Promise.reject, MutationObservers, IntersectionObservers etc
-
-     **Note:** All of these microtasks are processed in the same turn of the event loop.
-     **[⬆ Back to Top](#table-of-contents)**
-
-389. ### What are different event loops
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-390. ### What is the purpose of queueMicrotask
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-391. ### How do you use javascript libraries in typescript file
-
-     It is known that not all JavaScript libraries or frameworks have TypeScript declaration files. But if you still want to use libraries or frameworks in our TypeScript files without getting compilation errors, the only solution is `declare` keyword along with a variable declaration. For example, let's imagine you have a library called `customLibrary` that doesn’t have a TypeScript declaration and have a namespace called `customLibrary` in the global namespace. You can use this library in typescript code as below,
-
-     ```javascript
-     declare var customLibrary;
-     ```
-
-     In the runtime, typescript will provide the type to the `customLibrary` variable as `any` type. The another alternative without using declare keyword is below
-
-     ```javascript
-     var customLibrary: any;
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-392. ### What are the differences between promises and observables
-
-     Some of the major difference in a tabular form
-
-     | Promises                                                           | Observables                                                                              |
-     | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
-     | Emits only a single value at a time                                | Emits multiple values over a period of time(stream of values ranging from 0 to multiple) |
-     | Eager in nature; they are going to be called immediately           | Lazy in nature; they require subscription to be invoked                                  |
-     | Promise is always asynchronous even though it resolved immediately | Observable can be either synchronous or asynchronous                                     |
-     | Doesn't provide any operators                                      | Provides operators such as map, forEach, filter, reduce, retry, and retryWhen etc        |
-     | Cannot be canceled                                                 | Canceled by using unsubscribe() method                                                   |
-
-     **[⬆ Back to Top](#table-of-contents)**
-
 393. ### What is heap
 
      Heap(Or memory heap) is the memory location where objects are stored when we define variables. i.e, This is the place where all the memory allocations and de-allocation take place. Both heap and call-stack are two containers of JS runtime.
      Whenever runtime comes across variables and function declarations in the code it stores them in the Heap.
 
      ![Screenshot](images/heap.png)
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-394. ### What is an event table
-
-     Event Table is a data structure that stores and keeps track of all the events which will be executed asynchronously like after some time interval or after the resolution of some API requests. i.e Whenever you call a setTimeout function or invoke async operation, it is added to the Event Table.
-     It doesn't not execute functions on it’s own. The main purpose of the event table is to keep track of events and send them to the Event Queue as shown in the below diagram.
-
-     ![Screenshot](images/event-table.png)
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-395. ### What is a microTask queue
-
-     Microtask Queue is the new queue where all the tasks initiated by promise objects get processed before the callback queue.
-     The microtasks queue are processed before the next rendering and painting jobs. But if these microtasks are running for a long time then it leads to visual degradation.
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-396. ### What is the difference between shim and polyfill
-
-     A shim is a library that brings a new API to an older environment, using only the means of that environment. It isn't necessarily restricted to a web application. For example, es5-shim.js is used to emulate ES5 features on older browsers (mainly pre IE9).
-     Whereas polyfill is a piece of code (or plugin) that provides the technology that you, the developer, expect the browser to provide natively.
-     In a simple sentence, A polyfill is a shim for a browser API.
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -3968,18 +3693,6 @@ y = 44; // Throws an error
 
      **[⬆ Back to Top](#table-of-contents)**
 
-400. ### What are the common use cases of observables
-
-     Some of the most common use cases of observables are web sockets with push notifications, user input changes, repeating intervals, etc
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-401. ### What is RxJS
-
-     RxJS (Reactive Extensions for JavaScript) is a library for implementing reactive programming using observables that makes it easier to compose asynchronous or callback-based code. It also provides utility functions for creating and working with observables.
-
-     **[⬆ Back to Top](#table-of-contents)**
-
 402. ### What is the difference between Function constructor and function declaration
 
      The functions which are created with `Function constructor` do not create closures to their creation contexts but they are always created in the global scope. i.e, the function can access its own local variables and global scope variables only. Whereas function declarations can access outer function variables(closures) too.
@@ -4012,24 +3725,6 @@ y = 44; // Throws an error
 
      **[⬆ Back to Top](#table-of-contents)**
 
-403. ### What is a Short circuit condition
-
-     Short circuit conditions are meant for condensed way of writing simple if statements. Let's demonstrate the scenario using an example. If you would like to login to a portal with an authentication condition, the expression would be as below,
-
-     ```javascript
-     if (authenticate) {
-       loginToPorta();
-     }
-     ```
-
-     Since the javascript logical operators evaluated from left to right, the above expression can be simplified using && logical operator
-
-     ```javascript
-     authenticate && loginToPorta();
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
 404. ### What is the easiest way to resize an array
 
      The length property of an array is useful to resize or empty an array quickly. Let's apply length property on number array to resize the number of elements from 5 to 2,
@@ -4051,29 +3746,6 @@ y = 44; // Throws an error
      console.log(array.length); // 0
      console.log(array); // []
      ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-405. ### What is an observable
-
-     An Observable is basically a function that can return a stream of values either synchronously or asynchronously to an observer over time. The consumer can get the value by calling `subscribe()` method.
-     Let's look at a simple example of an Observable
-
-     ```javascript
-     import { Observable } from "rxjs";
-
-     const observable = new Observable((observer) => {
-       setTimeout(() => {
-         observer.next("Message from a Observable!");
-       }, 3000);
-     });
-
-     observable.subscribe((value) => console.log(value));
-     ```
-
-     ![Screenshot](images/observables.png)
-
-     **Note:** Observables are not part of the JavaScript language yet but they are being proposed to be added to the language
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -4200,161 +3872,6 @@ y = 44; // Throws an error
 
      **[⬆ Back to Top](#table-of-contents)**
 
-409. ### What is deno
-
-     Deno is a simple, modern and secure runtime for JavaScript and TypeScript that uses V8 JavaScript engine and the Rust programming language.
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-410. ### How do you make an object iterable in javascript
-
-     By default, plain objects are not iterable. But you can make the object iterable by defining a `Symbol.iterator` property on it.
-
-     Let's demonstrate this with an example,
-
-     ```javascript
-     const collection = {
-       one: 1,
-       two: 2,
-       three: 3,
-       [Symbol.iterator]() {
-         const values = Object.keys(this);
-         let i = 0;
-         return {
-           next: () => {
-             return {
-               value: this[values[i++]],
-               done: i > values.length,
-             };
-           },
-         };
-       },
-     };
-
-     const iterator = collection[Symbol.iterator]();
-
-     console.log(iterator.next()); // → {value: 1, done: false}
-     console.log(iterator.next()); // → {value: 2, done: false}
-     console.log(iterator.next()); // → {value: 3, done: false}
-     console.log(iterator.next()); // → {value: undefined, done: true}
-     ```
-
-     The above process can be simplified using a generator function,
-
-     ```javascript
-     const collection = {
-       one: 1,
-       two: 2,
-       three: 3,
-       [Symbol.iterator]: function* () {
-         for (let key in this) {
-           yield this[key];
-         }
-       },
-     };
-     const iterator = collection[Symbol.iterator]();
-     console.log(iterator.next()); // {value: 1, done: false}
-     console.log(iterator.next()); // {value: 2, done: false}
-     console.log(iterator.next()); // {value: 3, done: false}
-     console.log(iterator.next()); // {value: undefined, done: true}
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-411. ### What is a Proper Tail Call
-
-     First, we should know about tail call before talking about "Proper Tail Call". A tail call is a subroutine or function call performed as the final action of a calling function. Whereas **Proper tail call(PTC)** is a technique where the program or code will not create additional stack frames for a recursion when the function call is a tail call.
-
-     For example, the below classic or head recursion of factorial function relies on stack for each step. Each step need to be processed upto `n * factorial(n - 1)`
-
-     ```javascript
-     function factorial(n) {
-       if (n === 0) {
-         return 1;
-       }
-       return n * factorial(n - 1);
-     }
-     console.log(factorial(5)); //120
-     ```
-
-     But if you use Tail recursion functions, they keep passing all the necessary data it needs down the recursion without relying on the stack.
-
-     ```javascript
-     function factorial(n, acc = 1) {
-       if (n === 0) {
-         return acc;
-       }
-       return factorial(n - 1, n * acc);
-     }
-     console.log(factorial(5)); //120
-     ```
-
-     The above pattern returns the same output as the first one. But the accumulator keeps track of total as an argument without using stack memory on recursive calls.
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-412. ### How do you check an object is a promise or not
-
-     If you don't know if a value is a promise or not, wrapping the value as `Promise.resolve(value)` which returns a promise
-
-     ```javascript
-     function isPromise(object) {
-       if (Promise && Promise.resolve) {
-         return Promise.resolve(object) == object;
-       } else {
-         throw "Promise not supported in your environment";
-       }
-     }
-
-     var i = 1;
-     var promise = new Promise(function (resolve, reject) {
-       resolve();
-     });
-
-     console.log(isPromise(i)); // false
-     console.log(isPromise(promise)); // true
-     ```
-
-     Another way is to check for `.then()` handler type
-
-     ```javascript
-     function isPromise(value) {
-       return Boolean(value && typeof value.then === "function");
-     }
-     var i = 1;
-     var promise = new Promise(function (resolve, reject) {
-       resolve();
-     });
-
-     console.log(isPromise(i)); // false
-     console.log(isPromise(promise)); // true
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-413. ### How to detect if a function is called as constructor
-
-     You can use `new.target` pseudo-property to detect whether a function was called as a constructor(using the new operator) or as a regular function call.
-
-     1. If a constructor or function invoked using the new operator, new.target returns a reference to the constructor or function.
-     2. For function calls, new.target is undefined.
-
-     ```javascript
-     function Myfunc() {
-        if (new.target) {
-           console.log('called with new');
-        } else {
-           console.log('not called with new');
-        }
-     }
-
-     new Myfunc(); // called with new
-     Myfunc(); // not called with new
-     Myfunc.call({}); not called with new
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
 414. ### What are the differences between arguments object and rest parameter
 
      There are three main differences between arguments object and rest parameters
@@ -4368,75 +3885,6 @@ y = 44; // Throws an error
 415. ### What are the differences between spread operator and rest parameter
 
      Rest parameter collects all remaining elements into an array. Whereas Spread operator allows iterables( arrays / objects / strings ) to be expanded into single arguments/elements. i.e, Rest parameter is opposite to the spread operator.
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-416. ### What are the different kinds of generators
-
-     There are five kinds of generators,
-
-     1. **Generator function declaration:**
-
-        ```javascript
-        function* myGenFunc() {
-          yield 1;
-          yield 2;
-          yield 3;
-        }
-        const genObj = myGenFunc();
-        ```
-
-     2. **Generator function expressions:**
-
-        ```javascript
-        const myGenFunc = function* () {
-          yield 1;
-          yield 2;
-          yield 3;
-        };
-        const genObj = myGenFunc();
-        ```
-
-     3. **Generator method definitions in object literals:**
-
-        ```javascript
-        const myObj = {
-          *myGeneratorMethod() {
-            yield 1;
-            yield 2;
-            yield 3;
-          },
-        };
-        const genObj = myObj.myGeneratorMethod();
-        ```
-
-     4. **Generator method definitions in class:**
-
-        ```javascript
-        class MyClass {
-          *myGeneratorMethod() {
-            yield 1;
-            yield 2;
-            yield 3;
-          }
-        }
-        const myObject = new MyClass();
-        const genObj = myObject.myGeneratorMethod();
-        ```
-
-     5. **Generator as a computed property:**
-
-        ```javascript
-        const SomeObj = {
-          *[Symbol.iterator]() {
-            yield 1;
-            yield 2;
-            yield 3;
-          },
-        };
-
-        console.log(Array.from(SomeObj)); // [ 1, 2, 3 ]
-        ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -4482,28 +3930,6 @@ y = 44; // Throws an error
 
      **[⬆ Back to Top](#table-of-contents)**
 
-419. ### How do you define instance and non-instance properties
-
-     The Instance properties must be defined inside of class methods. For example, name and age properties defined inside constructor as below,
-
-     ```javascript
-     class Person {
-       constructor(name, age) {
-         this.name = name;
-         this.age = age;
-       }
-     }
-     ```
-
-     But Static(class) and prototype data properties must be defined outside of the ClassBody declaration. Let's assign the age value for Person class as below,
-
-     ```javascript
-     Person.staticAge = 30;
-     Person.prototype.prototypeAge = 40;
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
 420. ### What is the difference between isNaN and Number.isNaN?
 
      1. **isNaN**: The global function `isNaN` converts the argument to a Number and returns true if the resulting value is NaN.
@@ -4514,26 +3940,6 @@ y = 44; // Throws an error
      ```javascript
      isNaN(‘hello’);   // true
      Number.isNaN('hello'); // false
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-421. ### How to invoke an IIFE without any extra brackets?
-
-     Immediately Invoked Function Expressions(IIFE) requires a pair of parenthesis to wrap the function which contains set of statements.
-
-     ```js
-     (function (dt) {
-       console.log(dt.toLocaleTimeString());
-     })(new Date());
-     ```
-
-     Since both IIFE and void operator discard the result of an expression, you can avoid the extra brackets using `void operator` for IIFE as below,
-
-     ```js
-     void (function (dt) {
-       console.log(dt.toLocaleTimeString());
-     })(new Date());
      ```
 
      **[⬆ Back to Top](#table-of-contents)**
@@ -4566,116 +3972,6 @@ y = 44; // Throws an error
      ```js
      await promise.catch((e) => void e);
      ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-424. ### How do style the console output using CSS?
-
-     You can add CSS styling to the console output using the CSS format content specifier %c. The console string message can be appended after the specifier and CSS style in another argument. Let's print the red the color text using console.log and CSS specifier as below,
-
-     ```js
-     console.log("%cThis is a red text", "color:red");
-     ```
-
-     It is also possible to add more styles for the content. For example, the font-size can be modified for the above text
-
-     ```js
-     console.log(
-       "%cThis is a red text with bigger font",
-       "color:red; font-size:20px"
-     );
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-425. ### What is nullish coalescing operator (??)?
-
-     It is a logical operator that returns its right-hand side operand when its left-hand side operand is null or undefined, and otherwise returns its left-hand side operand. This can be contrasted with the logical OR (||) operator, which returns the right-hand side operand if the left operand is any falsy value, not only null or undefined.
-
-     ```js
-     console.log(null ?? true); // true
-     console.log(false ?? true); // false
-     console.log(undefined ?? true); // true
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-426. ### How do you group and nest console output?
-
-     The `console.group()` can be used to group related log messages to be able to easily read the logs and use console.groupEnd()to close the group. Along with this, you can also nest groups which allows to output message in hierarchical manner.
-
-     For example, if you’re logging a user’s details:
-
-     ```js
-     console.group("User Details");
-     console.log("name: Sudheer Jonna");
-     console.log("job: Software Developer");
-
-     // Nested Group
-     console.group("Address");
-     console.log("Street: Commonwealth");
-     console.log("City: Los Angeles");
-     console.log("State: California");
-
-     console.groupEnd();
-     ```
-
-     You can also use `console.groupCollapsed()` instead of `console.group()` if you want the groups to be collapsed by default.
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-427. ### What is the difference between dense and sparse arrays?
-
-     An array contains items at each index starting from first(0) to last(array.length - 1) is called as Dense array. Whereas if at least one item is missing at any index, the array is called as sparse.
-
-     Let's see the below two kind of arrays,
-
-     ```js
-     const avengers = ["Ironman", "Hulk", "CaptainAmerica"];
-     console.log(avengers[0]); // 'Ironman'
-     console.log(avengers[1]); // 'Hulk'
-     console.log(avengers[2]); // 'CaptainAmerica'
-     console.log(avengers.length); // 3
-
-     const justiceLeague = ["Superman", "Aquaman", , "Batman"];
-     console.log(justiceLeague[0]); // 'Superman'
-     console.log(justiceLeague[1]); // 'Aquaman'
-     console.log(justiceLeague[2]); // undefined
-     console.log(justiceLeague[3]); // 'Batman'
-     console.log(justiceLeague.length); // 4
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-428. ### What are the different ways to create sparse arrays?
-
-     There are 4 different ways to create sparse arrays in JavaScript
-
-     1. **Array literal:** Omit a value when using the array literal
-        ```js
-        const justiceLeague = ["Superman", "Aquaman", , "Batman"];
-        console.log(justiceLeague); // ['Superman', 'Aquaman', empty ,'Batman']
-        ```
-     2. **Array() constructor:** Invoking Array(length) or new Array(length)
-        ```js
-        const array = Array(3);
-        console.log(array); // [empty, empty ,empty]
-        ```
-     3. **Delete operator:** Using delete array[index] operator on the array
-        ```js
-        const justiceLeague = ["Superman", "Aquaman", "Batman"];
-        delete justiceLeague[1];
-        console.log(justiceLeague); // ['Superman', empty, ,'Batman']
-        ```
-     4. **Increase length property:** Increasing length property of an array
-        `js const justiceLeague = ['Superman', 'Aquaman', 'Batman']; justiceLeague.length = 5; console.log(justiceLeague); // ['Superman', 'Aquaman', 'Batman', empty, empty] `
-        **[⬆ Back to Top](#table-of-contents)**
-
-429. ### What is the difference between setTimeout, setImmediate and process.nextTick?
-
-     1. **Set Timeout:** setTimeout() is to schedule execution of a one-time callback after delay milliseconds.
-     2. **Set Immediate:** The setImmediate function is used to execute a function right after the current event loop finishes.
-     3. **Process NextTick:** If process.nextTick() is called in a given phase, all the callbacks passed to process.nextTick() will be resolved before the event loop continues. This will block the event loop and create I/O Starvation if process.nextTick() is called recursively.
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -4757,31 +4053,6 @@ y = 44; // Throws an error
 
      **[⬆ Back to Top](#table-of-contents)**
 
-431. ### How do you create custom HTML element?
-
-     The creation of custom HTML elements involves two main steps,
-
-     1. **Define your custom HTML element:** First you need to define some custom class by extending HTMLElement class.
-        After that define your component properties (styles,text etc) using `connectedCallback` method.
-        **Note:** The browser exposes a function called `customElements.define` inorder to reuse the element.
-        ```javascript
-        class CustomElement extends HTMLElement {
-          connectedCallback() {
-            this.innerHTML = "This is a custom element";
-          }
-        }
-        customElements.define("custom-element", CustomElement);
-        ```
-     2. **Use custome element just like other HTML element:** Declare your custom element as a HTML tag.
-
-     ```javascript
-        <body>
-             <custom-element>
-        </body>
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
 432. ### What is global execution context?
 
      The global execution context is the default or first execution context that is created by the JavaScript engine before any code is executed(i.e, when the file first loads in the browser). All the global code that is not inside a function or object will be executed inside this global execution context. Since JS engine is single threaded there will be only one global environment and there will be only one global execution context.
@@ -4805,12 +4076,6 @@ y = 44; // Throws an error
 
      console.log("GlobalContext");
      ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-433. ### What is function execution context?
-
-     Whenever a function is invoked, the JavaScript engine creates a different type of Execution Context known as a Function Execution Context (FEC) within the Global Execution Context (GEC) to evaluate and execute the code within that function.
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -4881,28 +4146,6 @@ y = 44; // Throws an error
      ```
  
      **[⬆ Back to Top](#table-of-contents)**
-
-436. ### What is optional chaining?
-
-     According to MDN official docs, the optional chaining operator (?.) permits reading the value of a property located deep within a chain of connected objects without having to expressly validate that each reference in the chain is valid.
-
-     The ?. operator is like the . chaining operator, except that instead of causing an error if a reference is nullish (null or undefined), the expression short-circuits with a return value of undefined. When used with function calls, it returns undefined if the given function does not exist.
-
-     ```js
-      const adventurer = {
-        name: 'Alice',
-        cat: {
-          name: 'Dinah'
-        }
-      };
-
-      const dogName = adventurer.dog?.name;
-      console.log(dogName);
-      // expected output: undefined
-
-      console.log(adventurer.someNonExistentMethod?.());
-      // expected output: undefined
-     ```
 
 ### Coding Exercise
 
