@@ -251,8 +251,6 @@ You can download the PDF and Epub version of this repository from the latest run
 | 207 | [What are the differences between WeakMap and Map](#what-are-the-differences-between-weakmap-and-map)                                                             |
 | 208 | [List down the collection of methods available on WeakMap](#list-down-the-collection-of-methods-available-on-weakmap)                                             |
 | 209 | [What is the purpose of uneval](#what-is-the-purpose-of-uneval)                                                                                                   |
-| 210 | [How do you encode an URL](#how-do-you-encode-an-url)                                                                                                             |
-| 211 | [How do you decode an URL](#how-do-you-decode-an-url)                                                                                                             |
 | 212 | [How do you print the contents of web page](#how-do-you-print-the-contents-of-web-page)                                                                           |
 | 213 | [What is the difference between uneval and eval](#what-is-the-difference-between-uneval-and-eval)                                                                 |
 | 214 | [What is an anonymous function](#what-is-an-anonymous-function)                                                                                                   |
@@ -450,9 +448,7 @@ You can download the PDF and Epub version of this repository from the latest run
 | 406 | [What is the difference between function and class declarations](#what-is-the-difference-between-function-and-class-declarations)                                 |
 | 407 | [What is an async function](#what-is-an-async-function)                                                                                                           |
 | 408 | [How do you prevent promises swallowing errors](#how-do-you-prevent-promises-swallowing-errors)                                                                   |
-| 409 | [What is deno](#what-is-deno)                                                                                                                                     |
 | 410 | [How do you make an object iterable in javascript](#how-do-you-make-an-object-iterable-in-javascript)                                                             |
-| 411 | [What is a Proper Tail Call](#what-is-a-proper-tail-call)                                                                                                         |
 | 412 | [How do you check an object is a promise or not](#how-do-you-check-an-object-is-a-promise-or-not)                                                                 |
 | 413 | [How to detect if a function is called as constructor](#how-to-detect-if-a-function-is-called-as-constructor)                                                     |
 | 414 | [What are the differences between arguments object and rest parameter](#what-are-the-differences-between-arguments-object-and-rest-parameter)                     |
@@ -2164,18 +2160,6 @@ y = 44; // Throws an error
 
      **[⬆ Back to Top](#table-of-contents)**
 
-151. ### What is tree shaking
-
-     Tree shaking is a form of dead code elimination. It means that unused modules will not be included in the bundle during the build process and for that it relies on the static structure of ES2015 module syntax,( i.e. import and export). Initially this has been popularized by the ES2015 module bundler `rollup`.
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-152. ### What is the need of tree shaking
-
-     Tree Shaking can significantly reduce the code size in any application. i.e, The less code we send over the wire the more performant the application will be. For example, if we just want to create a “Hello World” Application using SPA frameworks then it will take around a few MBs, but by tree shaking it can bring down the size to just a few hundred KBs. Tree shaking is implemented in Rollup and Webpack bundlers.
-
-     **[⬆ Back to Top](#table-of-contents)**
-
 155. ### What are the string methods available in Regular expression
 
      Regular Expressions has two string methods: search() and replace().
@@ -2695,12 +2679,6 @@ y = 44; // Throws an error
 
      console.log(employeeObject.name); // John
      ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-265. ### What is MEAN in javascript
-
-     The MEAN (MongoDB, Express, AngularJS, and Node.js) stack is the most popular open-source JavaScript software tech stack available for building dynamic web apps where you can write both the server-side and client-side halves of the web project entirely in JavaScript.
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -3597,48 +3575,6 @@ y = 44; // Throws an error
 
      // Wait 2 seconds to abort both requests
      setTimeout(() => controller.abort(), 2000);
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-385. ### What is minimum timeout throttling
-
-     Both browser and NodeJS javascript environments throttles with a minimum delay that is greater than 0ms. That means even though setting a delay of 0ms will not happen instantaneously.
-     **Browsers:** They have a minimum delay of 4ms. This throttle occurs when successive calls are triggered due to callback nesting(certain depth) or after a certain number of successive intervals.
-     Note: The older browsers have a minimum delay of 10ms.
-     **Nodejs:** They have a minimum delay of 1ms. This throttle happens when the delay is larger than 2147483647 or less than 1.
-     The best example to explain this timeout throttling behavior is the order of below code snippet.
-
-     ```javascript
-     function runMeFirst() {
-       console.log("My script is initialized");
-     }
-     setTimeout(runMeFirst, 0);
-     console.log("Script loaded");
-     ```
-
-     and the output would be in
-
-     ```cmd
-     Script loaded
-     My script is initialized
-     ```
-
-     If you don't use `setTimeout`, the order of logs will be sequential.
-
-     ```javascript
-     function runMeFirst() {
-       console.log("My script is initialized");
-     }
-     runMeFirst();
-     console.log("Script loaded");
-     ```
-
-     and the output is,
-
-     ```cmd
-     My script is initialized
-     Script loaded
      ```
 
      **[⬆ Back to Top](#table-of-contents)**
